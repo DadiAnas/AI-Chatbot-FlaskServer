@@ -3,7 +3,7 @@ import mysql.connector as mysql
 from os import curdir
 
 def db():
-    host = "facebookservice.ddns.net"
+    host = "www.db4free.net"
     user = "chatbot__db"
     password = "chatbot__db"  # settings.MYSQL_DATABASE_PASSWORD
     database = 'chatbot__db'
@@ -18,7 +18,7 @@ def db():
 
     return mysql.connect(**config)
 
-db = db()
-cursor = db.cursor(buffered=True)
+#db = db()
+#cursor = db.cursor(buffered=True)
 
 
