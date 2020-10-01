@@ -18,7 +18,7 @@ def db():
 
     return mysql.connect(**config)
 
-#db = db()
-#cursor = db.cursor(buffered=True)
+db = db()
+cursor = db.cursor(buffered=True)
 
 
