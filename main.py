@@ -10,9 +10,9 @@ def hello_world():
     #cursor.execute(query)
     #query = "INSERT INTO intents (id,name) VALUES ('{}','{}');".format(2,"anas")
     #cursor.execute(query)
-    query = "ALTER TABLE intents DROP COLUMN Updated_at; "
-    cursor.execute(query)
-    db.commit()
+    #query = "ALTER TABLE intents DROP COLUMN Updated_at; "
+    #cursor.execute(query)
+    #db.commit()
     query="SELECT * FROM intents"
     cursor.execute(query)
     print(cursor.column_names)
