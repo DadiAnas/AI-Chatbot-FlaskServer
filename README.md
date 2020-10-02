@@ -17,8 +17,8 @@ $ py -m pip install -r requirements.txt
 $ heroku local
 ```
 
-Your app should now be running on [localhost:5000](http://localhost:5000/). 
-It should works just like our deployed version: [Chatbot Server on heroku](https://ai-chatbot-server.herokuapp.com/).
+Your app should now be running on [localhost:5000](http://localhost:5000/).
+It should looks just like our deployed version: [Chatbot Server on heroku](https://ai-chatbot-server.herokuapp.com/).
 
 ## Deploying to Heroku
 
