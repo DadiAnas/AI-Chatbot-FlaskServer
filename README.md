@@ -11,7 +11,7 @@ Make sure you have Python 3.8 [installed locally](http://install.python-guide.or
 $ git clone https://github.com/DadiAnas/AI-Chatbot-FlaskServer.git
 $ cd ai-chatbot-flaskserver
 
-$ py -m venv getting-started
+$ py -m venv ai-chatbot-flaskserver
 $ py -m pip install -r requirements.txt
 
 $ heroku local
