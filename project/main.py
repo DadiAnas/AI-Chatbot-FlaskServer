@@ -1,38 +1,34 @@
 from flask import Blueprint,jsonify,request
-from project.config import cursor
+from .deepLearning.chatbot import chatbot_response
 
 main = Blueprint('main',__name__)
 
 @main.route('/')
-def hello_world():
-    query="SELECT * FROM intents"
-    cursor.execute(query)
-    print(cursor.column_names)
-    intents = cursor.fetchall()
-    response = dict()
-    for intent in intents:
-        response[intent[0]]=intent[1]
-    return jsonify({"response:":response}) or "<h1>Welcome to chatbot server !!</h1>"
+def chatbot_home():
+    return "<h1>Welcome to chatbot server !!</h1>"
 
-@main.route('/getmsg/', methods=['GET'])
+@main.route('/message/', methods=['GET'])
 def respond():
     # Retrieve the name from url parameter
-    name = request.args.get("name", None)
+    message = str(request.args.get("message", str))
+    chatbot_rep = chatbot_response(message)
 
     # For debugging
-    print(f"got name {name}")
+    print(f"got message {message}")
+    print(f"chatbot response: {chatbot_rep}")
 
     response = {}
 
     # Check if user sent a name at all
-    if not name:
+    if not message:
         response["ERROR"] = "no name found, please send a name."
     # Check if the user entered a number not a name
-    elif str(name).isdigit():
+    elif str(message).isdigit():
         response["ERROR"] = "name can't be numeric."
     # Now the user entered a valid name
     else:
-        response["MESSAGE"] = f"Welcome {name} to our awesome platform!!"
+        response["MESSAGE"] = f"{message}"
+        response["MESSAGE"] = f"{chatbot_rep}"
 
     # Return the response in json format
     return jsonify(response)
