@@ -22,7 +22,7 @@ config.gpu_options.per_process_gpu_memory_fraction = 0.6
 session = Session(config=config)
 backend.set_session(session)
 
-current_directory = getcwd()+"\\project\\deepLearning\\"
+current_directory = "\\project\\deepLearning\\"
 print(current_directory)
 lemmatizer = WordNetLemmatizer()
 model = load_model(current_directory+'models\\chatbot_model.h5')
