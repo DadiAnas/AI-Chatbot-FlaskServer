@@ -10,7 +10,6 @@ Jinja2==2.11.2
 Keras==2.3.1
 Keras-Preprocessing==1.1.0
 material==0.1
-mkl-fft==1.2.0
 mkl-random==1.1.1
 mkl-service==2.3.0
 mysql-connector==2.2.9
