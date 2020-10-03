@@ -1,41 +1,27 @@
-absl-py @ file:///C:/ci/absl-py_1600290345082/work
 astor==0.8.1
 certifi==2020.6.20
 click==7.1.2
 Flask==1.1.2
 Flask-Material==0.1.1
-gast @ file:///tmp/build/80754af9/gast_1597433534803/work
-grpcio @ file:///C:/ci/grpcio_1597406403308/work
 gunicorn==20.0.4
 h5py==2.10.0
-importlib-metadata @ file:///C:/ci/importlib-metadata_1593446525189/work
 itsdangerous==1.1.0
 Jinja2==2.11.2
-joblib @ file:///tmp/build/80754af9/joblib_1594236160679/work
 Keras==2.3.1
-Keras-Applications @ file:///tmp/build/80754af9/keras-applications_1594366238411/work
 Keras-Preprocessing==1.1.0
-Markdown @ file:///C:/ci/markdown_1597415185889/work
-MarkupSafe @ file:///C:/ci/markupsafe_1594405949945/work
 material==0.1
 mkl-fft==1.2.0
 mkl-random==1.1.1
 mkl-service==2.3.0
 mysql-connector==2.2.9
-nltk @ file:///tmp/build/80754af9/nltk_1592496090529/work
-numpy @ file:///C:/ci/numpy_and_numpy_base_1596233945180/work
 protobuf==3.13.0
 pyreadline==2.1
-pyserial @ file:///tmp/build/80754af9/pyserial_1594419199743/work
 PyYAML==5.3.1
-regex @ file:///C:/ci/regex_1596827857056/work
-scipy @ file:///C:/ci/scipy_1597686737426/work
 six==1.15.0
 tensorboard==1.14.0
 tensorflow==1.14.0
 tensorflow-estimator==1.14.0
 termcolor==1.1.0
-tqdm @ file:///tmp/build/80754af9/tqdm_1600709023549/work
 Werkzeug==1.0.1
 wincertstore==0.2
 wrapt==1.12.1
