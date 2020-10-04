@@ -8,6 +8,13 @@ import random
 from os import getcwd
 from tensorflow.compat.v1 import ConfigProto,Session
 from keras import backend
+import requests
+
+print("------------------------------------------------------------------------")
+url = 'https://github.com/DadiAnas/AI-Chatbot-FlaskServer/blob/master/project/deepLearning/models/chatbot_model.h5?raw=true'
+r = requests.get(url, allow_redirects=True)
+open('models/chatbot_model.h5', 'wb').write(r.content)
+print("------------------------------------------------------------------------")
 
 
 config = ConfigProto(
