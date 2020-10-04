@@ -9,10 +9,10 @@ from keras.optimizers import SGD
 import random
 from os import getcwd
 
-current_directory = getcwd()+"\\project\\deepLearning\\"
+current_directory = ""
 
-nltk.download('punkt')
-nltk.download('wordnet')
+#nltk.download('punkt')
+#nltk.download('wordnet')
 lemmatizer = WordNetLemmatizer()
 
 words=[]
