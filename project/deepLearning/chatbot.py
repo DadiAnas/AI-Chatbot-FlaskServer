@@ -5,13 +5,8 @@ from numpy import array
 from keras.models import load_model
 from json import loads
 from random import choice
-from tensorflow.compat.v1 import Session
-from keras import backend
 
 
-
-session = Session()
-backend.set_session(session)
 
 current_directory = 'project/deepLearning/'
 lemmatizer = WordNetLemmatizer()
@@ -71,11 +66,9 @@ def getResponse(ints, intents_json):
 
 def chatbot_response(msg):
     try:
-        with session.as_default():
-            with session.graph.as_default():
-                ints = predict_class(msg, modelfile)
-                res = getResponse(ints, intents)
-                return res
+        ints = predict_class(msg, modelfile)
+        res = getResponse(ints, intents)
+        return res
     except:
         print("Error predecting")
 
