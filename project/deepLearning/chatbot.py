@@ -1,45 +1,28 @@
-import nltk
+from nltk import word_tokenize
 from nltk.stem import WordNetLemmatizer
-import pickle
-import numpy as np
+from pickle import load
+from numpy import array
 from keras.models import load_model
-import json
-import random
-from os import getcwd
-from tensorflow.compat.v1 import ConfigProto,Session
+from json import loads
+from random import choice
+from tensorflow.compat.v1 import Session
 from keras import backend
-import requests
-
-print("------------------------------------------------------------------------")
-url = 'https://github.com/DadiAnas/AI-Chatbot-FlaskServer/blob/master/project/deepLearning/models/chatbot_model.h5?raw=true'
-r = requests.get(url, allow_redirects=True)
-open('models/chatbot_model.h5', 'wb').write(r.content)
-print("------------------------------------------------------------------------")
 
 
-config = ConfigProto(
-device_count={'GPU': 2},
-intra_op_parallelism_threads=1,
-allow_soft_placement=True
-)
 
-config.gpu_options.allow_growth = True
-config.gpu_options.per_process_gpu_memory_fraction = 0.6
-
-session = Session(config=config)
+session = Session()
 backend.set_session(session)
 
-current_directory = ""
-print(current_directory)
+current_directory = 'project/deepLearning/'
 lemmatizer = WordNetLemmatizer()
-model = load_model(current_directory+'models\\chatbot_model.h5')
-intents = json.loads(open(current_directory+'data\\intents.json').read())
-words = pickle.load(open(current_directory+'pickles\\words.pkl', 'rb'))
-classes = pickle.load(open(current_directory+'pickles\\classes.pkl', 'rb'))
+modelfile = load_model(current_directory+'chatbot_model.h5')
+intents = loads(open(current_directory+'intents.json').read())
+words = load(open(current_directory+'words.pkl', 'rb'))
+classes = load(open(current_directory+'classes.pkl', 'rb'))
 
 
 def clean_up_sentence(sentence):
-    sentence_words = nltk.word_tokenize(sentence)
+    sentence_words = word_tokenize(sentence)
     sentence_words = [lemmatizer.lemmatize(word.lower()) for word in sentence_words]
     return sentence_words
 
@@ -58,13 +41,13 @@ def bow(sentence, words, show_details=True):
                 bag[i] = 1
                 if show_details:
                     print("found in bag: %s" % w)
-    return np.array(bag)
+    return array(bag)
 
 
 def predict_class(sentence, model):
     # filter out predictions below a threshold
     p = bow(sentence, words, show_details=False)
-    res = model.predict(np.array([p]))[0]
+    res = model.predict(array([p]))[0]
     ERROR_THRESHOLD = 0.25
     results = [[i, r] for i, r in enumerate(res) if r > ERROR_THRESHOLD]
     # sort by strength of probability
@@ -81,7 +64,7 @@ def getResponse(ints, intents_json):
     list_of_intents = intents_json['intents']
     for i in list_of_intents:
         if (i['tag'] == tag):
-            result = random.choice(i['responses'])
+            result = choice(i['responses'])
             break
     return result
 
@@ -90,7 +73,7 @@ def chatbot_response(msg):
     try:
         with session.as_default():
             with session.graph.as_default():
-                ints = predict_class(msg, model)
+                ints = predict_class(msg, modelfile)
                 res = getResponse(ints, intents)
                 return res
     except:

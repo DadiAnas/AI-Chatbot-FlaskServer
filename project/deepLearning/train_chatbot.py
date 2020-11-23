@@ -9,18 +9,15 @@ from keras.optimizers import SGD
 import random
 from os import getcwd
 
-current_directory = ""
-
-#nltk.download('punkt')
-#nltk.download('wordnet')
+nltk.download('punkt')
+nltk.download('wordnet')
 lemmatizer = WordNetLemmatizer()
 
 words=[]
 classes = []
 documents = []
 ignore_words = ['?', '!']
-data_file = open(current_directory+'data\\intents.json').read()
-intents = json.loads(data_file)
+intents = json.loads(open('intents.json').read())
 
 
 for intent in intents['intents']:
@@ -48,8 +45,8 @@ print (len(classes), "classes", classes)
 print (len(words), "unique lemmatized words", words)
 
 
-pickle.dump(words,open(current_directory+'pickles\\words.pkl','wb'))
-pickle.dump(classes,open(current_directory+'pickles\\classes.pkl','wb'))
+pickle.dump(words,open('words.pkl','wb'))
+pickle.dump(classes,open('classes.pkl','wb'))
 
 # initializing training data
 training = []
@@ -94,6 +91,6 @@ model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy
 
 #fitting and saving the model
 hist = model.fit(np.array(train_x), np.array(train_y), epochs=200, batch_size=5, verbose=1)
-model.save(current_directory+'models\\chatbot_model.h5', hist)
+model.save('chatbot_model.h5', hist)
 
 print("model created")

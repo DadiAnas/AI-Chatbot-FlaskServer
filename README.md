@@ -1,6 +1,6 @@
-# Python: AI-CHATBOT-SERVER
+# Python: Getting Started
 
-An AI chatbot server, which easily deployed to Heroku.
+An AI chatbot server, which can easily be deployed to Heroku.
 
 
 ## Running Locally
@@ -11,14 +11,13 @@ Make sure you have Python 3.8 [installed locally](http://install.python-guide.or
 $ git clone https://github.com/DadiAnas/AI-Chatbot-FlaskServer.git
 $ cd ai-chatbot-flaskserver
 
-$ py -m venv ai-chatbot-flaskserver
+$ py -m venv getting-started
 $ py -m pip install -r requirements.txt
 
 $ heroku local
 ```
 
-Your app should now be running on [localhost:5000](http://localhost:5000/). 
-It should works just like our deployed version: [Chatbot Server on heroku](https://ai-chatbot-server.herokuapp.com/).
+Your app should now be running on [localhost:5000](http://localhost:5000/).
 
 ## Deploying to Heroku
 
