@@ -12,8 +12,8 @@ numpy >= 0.0.0
 protobuf==3.13.0
 pyreadline==2.1
 python-dotenv==0.15.0
-tensorflow==1.14.0
-tensorflow-estimator==1.14.0
-termcolor==1.1.0
-Werkzeug==1.0.1
+tensorflow>=0.0.0
+tensorflow-estimator>=0.0.0
+termcolor>=0.0.0
+Werkzeug>=0.0.0
 
