@@ -6,9 +6,9 @@ itsdangerous==1.1.0
 joblib >= 0.0.0
 Keras==2.3.1
 Keras-Applications >= 0.0.0
-Keras-Preprocessing==1.1.0
+Keras-Preprocessing>=1.1.1
 nltk >= 0.0.0
-numpy >= 0.0.0
+numpy >=1.16.0
 protobuf==3.13.0
 pyreadline==2.1
 python-dotenv==0.15.0
