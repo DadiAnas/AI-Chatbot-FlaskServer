@@ -3,10 +3,16 @@ from nltk.stem import WordNetLemmatizer
 from pickle import load
 from numpy import array
 from keras.models import load_model
+from keras import backend
 from json import loads
 from random import choice
+from tensorflow.compat.v1 import Session
 
 
+
+
+session = Session()
+backend.set_session(session)
 
 current_directory = 'project/deepLearning/'
 lemmatizer = WordNetLemmatizer()
@@ -66,9 +72,11 @@ def getResponse(ints, intents_json):
 
 def chatbot_response(msg):
     try:
-        ints = predict_class(msg, modelfile)
-        res = getResponse(ints, intents)
-        return res
+        with session.as_default():
+            with session.graph.as_default():
+                ints = predict_class(msg, modelfile)
+                res = getResponse(ints, intents)
+                return res
     except:
         print("Error predecting")
 
