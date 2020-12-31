@@ -5,7 +5,11 @@ main = Blueprint('main',__name__)
 
 @main.route('/')
 def chatbot_home():
-    return "<h1>Welcome to chatbot server !!</h1>"
+    responses=["hi","hello","how are you ?","good to see you here"]
+    response = [
+        {'id':0 ,'message': choice(responses),'trigger':1},
+                ]
+    return jsonify(response)
 
 @main.route('/message/', methods=['GET'])
 def respond():
