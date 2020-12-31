@@ -7,7 +7,7 @@ main = Blueprint('main',__name__)
 def chatbot_home():
     responses=["hi","hello","how are you ?","good to see you here"]
     response = [
-        {'id':0 ,'message': choice(responses),'trigger':1},
+        {'id':0 ,'message': 'Hello','trigger':1},
                 ]
     return jsonify(response)
 
