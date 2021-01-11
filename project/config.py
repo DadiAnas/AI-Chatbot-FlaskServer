@@ -1,10 +1,10 @@
 import mysql.connector as mysql
 
 def connect_to_database():
-    host = "localhost"
-    user = "root"
-    password = ""  # settings.MYSQL_DATABASE_PASSWORD
-    database = 'chatbot__db'
+    host = "remotemysql.com"
+    user = "BMxspwB2gu"
+    password = "5tsE1A5jRB"  # settings.MYSQL_DATABASE_PASSWORD
+    database = 'BMxspwB2gu'
 
     config = {
         'user': user,
