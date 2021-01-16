@@ -7,7 +7,7 @@ Jinja2==2.11.2
 joblib==0.17.0
 MarkupSafe==1.1.1
 regex==2020.11.13
-numpy==1.16.0
+numpy>=1.16.5
 Keras==2.3.1
 Keras-Applications 
 Keras-Preprocessing>=1.1.1
