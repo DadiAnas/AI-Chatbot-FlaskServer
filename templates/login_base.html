@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+    {% block title %}
+  <title>CHATBOT</title>
+    {% endblock %}
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+  <link rel="icon" href="/static/styles/images/icons/logo_icon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/bootstrap.css') }}">
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/loginbase_style.css') }}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+
+
+<body>
+
+  <div class="cont" style="background-image: url({{ url_for('static', filename='/styles/images/back.png') }}">
+  <div class="demo">
+    <div class="login">
+
+      <div class="logo">
+        <a href="/profile"> <img  src="/static/styles/images/logo_enset.png"> </a>
+      </div>
+
+      <div class="login__form">
+            {% block content %}
+            {% endblock %}
+
+      </div>
+
+    </div>
+  </div>
+</div>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+
+
+    <script  src= "{{ url_for('static',filename='scripts/script.js') }}"></script>
+    <script>window.jQuery || document.write('<script src="{{ url_for('static', filename='scripts/jquery.js') }}">\x3C/script>')</script>
+    <script type=text/javascript>
+      $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
+
+
+</body>
+
+</html>
