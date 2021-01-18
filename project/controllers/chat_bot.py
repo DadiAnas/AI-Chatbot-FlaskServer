@@ -20,7 +20,11 @@ chat_bot = Blueprint('chat_bot', __name__)
 @chat_bot.route('/message', methods=['GET', 'POST'])
 def respond():
     # Retrieve the name from url parameter
-    message = str(request.args.get("message", str)).encode('utf8').decode('utf8')
+    if request.method == 'GET':
+        message = str(request.args.get("message", str)).encode('utf8').decode('utf8')
+    else:
+        message = str(request.json.get("message", str)).encode('utf8').decode('utf8')
+        print(message)
     chatbot_rep = chatbot_response(message)
 
     # For debugging
@@ -45,9 +49,9 @@ def respond():
 
 
 @chat_bot.route('/train')
-def train_chatbot_model():
+async def train_chatbot_model():
     print("[INFO] Chatbot model is training...")
-    if train_chatbot(get_data_from_db()):
+    if await train_chatbot(get_data_from_db()):
         return jsonify({'response': 'chatbot well trained'})
     else:
         return jsonify({'error': 'chatbot wasn\'t trained well'})

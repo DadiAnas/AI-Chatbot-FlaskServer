@@ -12,7 +12,6 @@ session = Session()
 backend.set_session(session)
 
 
-
 def get_data_from_db():
     # fetch tags
     fetched = get_objects(tag_model.Tag)
@@ -26,13 +25,13 @@ def get_data_from_db():
         patterns = new_session.query(pattern_model.Pattern).filter_by(tag_id=item.id_tag).all()
         # add patterns to intents
         for pattern in patterns:
-            forma['patterns'].append( str(pattern.pattern).encode("utf8").decode("utf8"))
+            forma['patterns'].append(str(pattern.pattern).encode("utf8").decode("utf8"))
 
         # fetch responses
-        responses = new_session.query(response_model.Response ).filter_by(tag_id=item.id_tag).all()
+        responses = new_session.query(response_model.Response).filter_by(tag_id=item.id_tag).all()
         # add responses to intents
         for response in responses:
-            forma['responses'].append( str(response.response).encode("utf8").decode("utf8"))
+            forma['responses'].append(str(response.response).encode("utf8").decode("utf8"))
 
         # fetch contexts
         contexts = new_session.query(context_model.Context).filter_by(tag_id=item.id_tag).all()
@@ -45,9 +44,10 @@ def get_data_from_db():
         forma = {"tag": "", "patterns": [], "responses": [], "context": []}
     return result
 
+
 current_directory = 'project/deepLearning/'
 modelfile = load_model(current_directory + 'model/chatbot_model.h5')
-intents = get_data_from_db()#loads(open(current_directory + 'intents.json').read())
+intents = get_data_from_db()  # loads(open(current_directory + 'intents.json').read())
 words = load(open(current_directory + 'pkl/words.pkl', 'rb'))
 classes = load(open(current_directory + 'pkl/classes.pkl', 'rb'))
 
@@ -93,7 +93,7 @@ def getResponse(ints, intents_json):
     result = ''
     tag = ints[0]['intent']
     list_of_intents = intents_json['intents']
-    for i in  list_of_intents:
+    for i in list_of_intents:
         if (i['tag'] == tag):
             result = choice(i['responses'])
             if result is not None:
@@ -103,12 +103,11 @@ def getResponse(ints, intents_json):
 
 def chatbot_response(msg):
     try:
-
         with session.as_default():
             with session.graph.as_default():
                 ints = predict_class(msg, modelfile)
                 res = getResponse(ints, intents)
-                return res or choice(["Sorry, I can't understand you","Can you repeat on other words"])
+                return res or choice(["Sorry, I can't understand you", "Can you repeat on other words"])
     except:
         print("Error predecting")
 
