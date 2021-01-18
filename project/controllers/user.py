@@ -8,7 +8,6 @@ user = Blueprint('user', __name__)
 
 
 @user.route('/users/<int:user_id>', methods=['GET'])
-@is_logged_in
 def get_user(user_id):
     an_user = get_object(user_model.User, user_id)
     if an_user:
@@ -24,7 +23,6 @@ def get_user(user_id):
 
 
 @user.route('/users', methods=['GET'])
-@is_logged_in
 def get_users():
     users = []
     fetched_users = get_objects(user_model.User)
@@ -59,7 +57,6 @@ def user_add():
 
 
 @user.route("/users/<int:user_id>", methods=["PUT"])
-@is_logged_in
 def update_user(user_id):
     username = request.json.get('username')
     user_first_name = request.json.get('user_first_name')
@@ -78,7 +75,6 @@ def update_user(user_id):
 
 
 @user.route('/users/<int:user_id>', methods=['DELETE'])
-@is_logged_in
 def delete_user(user_id):
     try:
         delete_object(user_model.User, user_id)
