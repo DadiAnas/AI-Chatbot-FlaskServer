@@ -51,8 +51,10 @@ def user_add():
     a_user = user_model.User(username=username, user_first_name=user_first_name, user_last_name=user_last_name,
                              user_email=user_email, user_password=user_hashed_password)
     try:
-        add_object(a_user)
-        return jsonify({'response': a_user.username + ' added','code':200})
+        if add_object(a_user):
+            return jsonify({'response': a_user.username + ' added','code':200})
+        else:
+            return jsonify({'response': a_user.username + ' already exist','code':203})
     except:
         return jsonify({'error': 'cannot add user', 'code': 400})
 
