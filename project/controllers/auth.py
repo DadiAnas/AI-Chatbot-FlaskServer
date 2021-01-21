@@ -25,8 +25,6 @@ def login_template():
 
 @auth.route('/login', methods=['POST'])
 def login():
-    if not request.json:
-        abort(400)
     user_email = request.json.get('user_email')
     user_password = request.json.get('user_password')
     try:
