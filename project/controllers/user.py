@@ -50,9 +50,10 @@ def user_add():
     user_hashed_password = generate_password_hash(user_password, method='sha256')
     a_user = user_model.User(username=username, user_first_name=user_first_name, user_last_name=user_last_name,
                              user_email=user_email, user_password=user_hashed_password)
-    if add_object(a_user) is True:
-        return jsonify({'response': a_user.username + ' added'})
-    else:
+    try:
+        add_object(a_user)
+        return jsonify({'response': a_user.username + ' added','code':200})
+    except:
         return jsonify({'error': 'cannot add user', 'code': 400})
 
 
