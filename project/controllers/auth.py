@@ -25,21 +25,22 @@ def login_template():
 
 @auth.route('/login', methods=['POST'])
 def login():
+    if not request.json:
+        abort(400)
     user_email = request.json.get('user_email')
     user_password = request.json.get('user_password')
     try:
         new_session = session_factory()
         an_user = new_session.query(user_model.User).filter_by(user_email=user_email).first()
-        if an_user:
-            if not check_password_hash(an_user.user_password, user_password):
-                return jsonify({'response': 'wrong password'})
-            user_format = {'user_id': an_user.user_id,
-                           'username': an_user.username,
-                           'user_email': an_user.user_email,
-                           'user_first_name': an_user.user_first_name,
-                           'user_last_name': an_user.user_last_name}
-            session['logged_in'] = True
-            return jsonify({'response': user_format})
+        if not check_password_hash(an_user.user_password, user_password):
+            return jsonify({'response': 'wrong password'})
+        user_format = {'user_id': an_user.user_id,
+                       'username': an_user.username,
+                       'user_email': an_user.user_email,
+                       'user_first_name': an_user.user_first_name,
+                       'user_last_name': an_user.user_last_name}
+        session['logged_in'] = True
+        return jsonify({'response': user_format,'code':200})
     except:
         return jsonify({"error": f'wrong data', 'code': 400})
 
