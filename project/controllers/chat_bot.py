@@ -49,10 +49,10 @@ def respond():
 
 
 @chat_bot.route('/train')
-async def train_chatbot_model():
+def train_chatbot_model():
     print("[INFO] Chatbot model is training...")
     try:
-        await train_chatbot(get_data_from_db()):
+        train_chatbot(get_data_from_db()):
         return jsonify({'response': 'chatbot well trained'})
     except:
         return jsonify({'error': 'chatbot wasn\'t trained well'})
