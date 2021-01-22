@@ -52,7 +52,7 @@ def respond():
 def train_chatbot_model():
     print("[INFO] Chatbot model is training...")
     try:
-        train_chatbot(get_data_from_db()):
+        train_chatbot(get_data_from_db())
         return jsonify({'response': 'chatbot well trained'})
     except:
         return jsonify({'error': 'chatbot wasn\'t trained well'})
