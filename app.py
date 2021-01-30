@@ -16,5 +16,5 @@ app.register_blueprint(user_blueprint)
 app.secret_key = urandom(12).hex()
 
 
-if __name__ == '__main__':
+if __name__ == '__main__:
     app.run(threaded=True, port=5000)
